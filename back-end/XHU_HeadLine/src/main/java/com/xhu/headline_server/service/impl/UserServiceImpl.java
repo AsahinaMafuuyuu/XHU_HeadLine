@@ -1,5 +1,6 @@
 package com.xhu.headline_server.service.impl;
 
+import com.xhu.headline_server.entity.LoginInfo;
 import com.xhu.headline_server.entity.User;
 import com.xhu.headline_server.mapper.UserMapper;
 import com.xhu.headline_server.service.UserService;
@@ -86,4 +87,30 @@ public class UserServiceImpl implements UserService {
         // 防止返回 null，统一返回空列表
         return users != null ? users : List.of();
     }
+
+    // Java
+    @Override
+    public LoginInfo login(String username, String password) {
+        // 1\. 调用 mapper 查询用户
+        User user = userMapper.selectNameAndPassword(username, password);
+        if (user == null) {
+            // 登录失败：账号或密码错误
+            return null;
+        }
+
+        // 2\. 生成 token（示例：UUID，可换为 JWT）
+        String token = java.util.UUID.randomUUID().toString().replace("-", "");
+
+        // 3\. 封装 LoginInfo
+        LoginInfo loginInfo = new LoginInfo();
+        loginInfo.setUserId(user.getId());
+        loginInfo.setUserName(user.getUserName());
+        loginInfo.setPassword(user.getPassword());
+        loginInfo.setToken(token);
+
+        // 如果需要，可以在这里把 token 存到缓存（Redis）或数据库中，用于后续校验
+
+        return loginInfo;
+    }
+
 }

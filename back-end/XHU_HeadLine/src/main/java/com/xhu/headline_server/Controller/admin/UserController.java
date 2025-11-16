@@ -132,10 +132,10 @@ public class UserController {
             int page = getIntParam(params, "page", 1);
             int size = getIntParam(params, "size", 10);
 
-            // 1\. 先查出所有用户
+            // 1. 先查出所有用户
             List<User> all = userService.getAllUsers();
 
-            // 2\. 组装过滤条件：userName 模糊匹配，其它等值匹配
+            // 2. userName 模糊匹配，其它等值匹配
             Map<String, String> contains = new HashMap<>();
             contains.put("userName", userName);
 
@@ -147,7 +147,7 @@ public class UserController {
                 equals.put("phone", phone);
             }
 
-            // 3\. 使用 util1 统一做过滤 + 分页，返回 rows / total
+            // 3. 使用 util1 统一做过滤 + 分页
             Map<String, Object> data = util1.filterAndPage(all, contains, equals, page, size);
 
             res.put("code", 1);

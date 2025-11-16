@@ -23,7 +23,7 @@ public class User {
     private String updateTime;
     private String delete;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

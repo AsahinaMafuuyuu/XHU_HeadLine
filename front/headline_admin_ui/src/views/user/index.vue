@@ -70,7 +70,7 @@ const searchUserForm = searchForm
 const userList = list
 
 // 默认头像
-const DEFAULT_AVATAR = ''
+const DEFAULT_AVATAR = 'http://yumoni.top/upload/Transparent_Akkarin_Transparentized.png'
 
 // 图片加载失败时把图片替换为默认
 const onImageError = (e: Event) => {

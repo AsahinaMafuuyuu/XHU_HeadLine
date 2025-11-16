@@ -30,4 +30,6 @@ public interface UserMapper {
     int delUserById(@Param("id") Long id);
 
     List<User> getAllUsers();
-}
+
+     User selectNameAndPassword(String username, String password);
+ }

@@ -86,4 +86,25 @@
         ORDER BY id DESC
     </select>
 
+    <!-- 根据用户名和密码查询用户，给 selectNameAndPassword 使用 -->
+    <select id="selectNameAndPassword"
+            parameterType="map"
+            resultType="com.xhu.headline_server.entity.User">
+        SELECT
+            id,
+            user_name   AS userName,
+            password,
+            nick_name   AS nickName,
+            avatar_url  AS avatarUrl,
+            phone,
+            role,
+            create_time AS createTime,
+            update_time AS updateTime,
+            deleted
+        FROM `user`
+        WHERE user_name = #{username}
+          AND password  = #{password}
+          AND deleted   = 0
+            LIMIT 1
+    </select>
 </mapper>

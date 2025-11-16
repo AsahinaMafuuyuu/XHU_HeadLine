@@ -13,6 +13,13 @@
             <span>用户管理</span>
           </el-menu-item>
         </el-menu>
+
+        <el-menu :default-active="active" @select="go" class="el-menu-vertical-demo">
+          <el-menu-item index="/login">
+            <el-icon><IconMenu /></el-icon>
+            <span>登录管理</span>
+          </el-menu-item>
+        </el-menu>
       </el-scrollbar>
     </el-aside>
 

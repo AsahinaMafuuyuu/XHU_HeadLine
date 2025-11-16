@@ -1,5 +1,6 @@
 package com.xhu.headline_server.service;
 
+import com.xhu.headline_server.entity.LoginInfo;
 import com.xhu.headline_server.entity.User;
 import org.springframework.stereotype.Service;
 
@@ -20,4 +21,6 @@ public interface UserService {
     long countUsers(String userName, String phone);
 
     List<User> getAllUsers();
+
+    LoginInfo login(String username, String password);
 }
