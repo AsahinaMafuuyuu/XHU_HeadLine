@@ -23,9 +23,10 @@ public class User {
     private String updateTime;
     private String delete;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
+    // dzh
 
     public void setId(Long id) {
         this.id = id;
