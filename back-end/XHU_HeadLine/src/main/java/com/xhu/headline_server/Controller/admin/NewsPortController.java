@@ -1,6 +1,6 @@
 package com.xhu.headline_server.Controller.admin;
 
-import com.xhu.headline_server.entity.newsPort;
+import com.xhu.headline_server.entity.NewsPort;
 import com.xhu.headline_server.service.NewPortService;
 import com.xhu.headline_server.utils.util1;
 import org.mybatis.logging.Logger;
@@ -26,7 +26,7 @@ public class NewsPortController {
 
     // 增
     @PostMapping("/add")
-    public Map<String, Object> addNewsPort(@RequestBody newsPort newsPortDTO) {
+    public Map<String, Object> addNewsPort(@RequestBody NewsPort newsPortDTO) {
         Map<String, Object> res = new HashMap<>();
         try {
             // 使用服务层的 saveNewsPort 完成新增
@@ -53,7 +53,7 @@ public class NewsPortController {
             }
             Long id = Long.valueOf(idObj.toString());
 
-            newsPort newsPort = newPortService.getNewsPortById(id);
+            NewsPort newsPort = newPortService.getNewsPortById(id);
             if (newsPort == null) {
                 res.put("code", 0);
                 res.put("message", "新闻不存在");
@@ -87,7 +87,7 @@ public class NewsPortController {
                 ? Integer.parseInt(params.get("pageSize").toString())
                 : 10;
 
-        List<newsPort> allNews = newPortService.getAllNewsPorts();
+        List<NewsPort> allNews = newPortService.getAllNewsPorts();
 
         Map<String, String> contains = new HashMap<>();
         contains.put("title", title);
@@ -113,7 +113,7 @@ public class NewsPortController {
 
     // 改
     @PostMapping("/update")
-    public Map<String, Object> updateNewsPort(@RequestBody newsPort newsPortDTO) {
+    public Map<String, Object> updateNewsPort(@RequestBody NewsPort newsPortDTO) {
         Map<String, Object> res = new HashMap<>();
         if (newsPortDTO.getId() == 0 || newsPortDTO.getId() == 0) {
             res.put("code", 0);
