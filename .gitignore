@@ -1,2 +1,3 @@
 *.properties
 /application-secrets.properties
+application.properties
