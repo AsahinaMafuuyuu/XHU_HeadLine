@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useUserStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 
-const baseURL = 'http//localhost:8080'
+const baseURL = 'http://localhost:8080'
 
 const instance = axios.create({
   baseURL: baseURL,
@@ -20,6 +20,9 @@ instance.interceptors.request.use (
     // 如果有，则设置
     if (parseToken) {
       config.headers.token = parseToken
+      return config
+    }
+    else {
       return config
     }
   }, (err)=> {
