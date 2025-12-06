@@ -28,6 +28,11 @@
         WHERE post_id = #{postId}
     </select>
 
+    <insert id="insertComment" parameterType="com.xhu.headline_server.entity.Comment">
+        INSERT INTO comments (post_id, user_id, content, parent_id, create_time)
+        VALUES (#{postId}, #{userId}, #{content}, #{parentId}, NOW())
+    </insert>
+
 
 
 </mapper>

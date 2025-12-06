@@ -17,6 +17,11 @@ public class UserLoginController {
     @Autowired
     private UserService userService;
 
+    /**
+     *登录
+     * @param userDTO
+     * @return
+     */
     @PostMapping("/login")
     public Map<String, Object> login(@RequestBody UserDTO userDTO) {
         LoginInfo flag = userService.login(userDTO.getUserName(), userDTO.getPassword());
@@ -32,7 +37,11 @@ public class UserLoginController {
         return res;
     }
 
-
+    /**
+     * 注册
+     * @param userDTO
+     * @return
+     */
     @PostMapping("/register")
     public Map<String, Object> register(@RequestBody UserDTO userDTO) {
         Map<String, Object> res = new HashMap<>();
@@ -43,13 +52,13 @@ public class UserLoginController {
             res.put("message", "用户名或密码不能为空");
             return res;
         }
-
+        // 从前端传参中获取参数
         User users = new User();
         users.setUserName(userDTO.getUserName());
         users.setPassword(userDTO.getPassword());
         users.setRole(3);
         users.setPhone(userDTO.getPhone());
-
+        // 调用服务类方法
         try {
             userService.addUser(users);
             res.put("code", 1);
@@ -62,8 +71,20 @@ public class UserLoginController {
         return res;
     }
 
-
-    
+    @GetMapping("/profile")
+    public Map<String ,Object> profile(Long id){
+        Map<String ,Object> res = new HashMap<>();
+        if (id == null){
+            res.put("code","0");
+            res.put("message","请登录后查看哦~");
+            return res;
+        }else{
+            User user = userService.getUserById(id);
+            res.put("code","1");
+            res.put("data",user);
+            return res;
+        }
+    }
 
 
 

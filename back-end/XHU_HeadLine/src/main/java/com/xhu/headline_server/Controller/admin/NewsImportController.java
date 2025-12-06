@@ -17,8 +17,9 @@ public class NewsImportController {
     @Autowired
     private NewsPortMapper newsPortMapper;
 
-    // 需要验证管理员权限
-    // 增量导入新闻数据
+
+    // 接入爬虫增量导入新闻数据
+    // 不用看懂这个方法
     @PostMapping("/import")
     public Map<String, Object> importNews(@RequestBody List<NewsImportDTO> list) {
         Map<String, Object> res = new HashMap<>();

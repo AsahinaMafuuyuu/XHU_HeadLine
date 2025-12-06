@@ -16,8 +16,6 @@ public class NewPortServiceImpl implements NewPortService {
 
     /**
      * 新增或更新新闻
-     *
-     * @return
      */
     @Override
     public Long saveNewsPort(NewsPort newsPortDTO) {
@@ -26,10 +24,10 @@ public class NewPortServiceImpl implements NewPortService {
         }
         Long id = newsPortDTO.getId();
         if (id == null || id == 0) {
-            // 新增
+            // 如果没有传入id就新增一个帖子
             newsPortMapper.insert(newsPortDTO);
         } else {
-            // 更新
+            // 如果传入id则对已有的帖子更新
             newsPortMapper.update(newsPortDTO);
         }
         return id;
@@ -58,6 +56,9 @@ public class NewPortServiceImpl implements NewPortService {
         return affected > 0;
     }
 
+    /**
+     * 查询所有帖子
+     */
     @Override
     public List<NewsPort> getAllNewsPorts() {
         List<NewsPort> ports = newsPortMapper.listAll();

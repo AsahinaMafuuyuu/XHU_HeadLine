@@ -16,7 +16,5 @@ public interface CommentMapper {
 
     int countCommentsByPostId(@Param("postId") Long postId);
 
-    @Insert("INSERT INTO comments (post_id, content, parent_id, create_time) VALUES (#{postId}, #{content}, #{parentId}, #{createTime})")
-    @Options(useGeneratedKeys = true, keyProperty = "id")
     void insertComment(Comment comment);
 }
